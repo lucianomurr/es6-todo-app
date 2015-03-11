@@ -1,0 +1,22 @@
+{
+  "name": "es6-todo-angular",
+  "version": "0.0.1",
+  "description": "Play ES6++ with Angular and material design",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "devDependencies": {
+    "browser-sync": "^2.2.3",
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
+    "gulp-jshint": "^1.9.2",
+    "jshint-stylish": "^1.0.1"
+  },
+  "author": "Luciano Murruni <luciano.murruni@gmail.com>",
+  "license": "MIT"
+}

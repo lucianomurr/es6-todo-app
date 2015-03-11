@@ -1,0 +1,39 @@
+<md-toolbar md-scroll-shrink layout="row" flex>
+    <div class="md-toolbar-tools">
+        <h1 class="app-title">
+          <span>To-Do App</span>
+        </h1>
+      <span flex></span>
+      <md-button class="md-fab md-primary" style="color:#fff;" ng-click="showAddNewTask()">
+          <i class="fa fa-plus"></i>
+      </md-button>
+    </div>
+</md-toolbar>
+
+<md-content flex>
+ <md-list>
+   <md-item ng-repeat="item in list | orderBy:'itemId':'reverse' track by $index">
+     <md-item-content md-ink-ripple="#ff0">
+       <div class="md-tile-left" style="padding-right:10px; padding-left:10px;">
+         <md-button ng-disabled="item.completed" class="md-fab md-primary es6App-button" aria-label="complete item" ng-click="complete(item.itemId)">
+            <i class="fa fa-check"></i>
+         </md-button>
+       </div>
+       <div class="md-tile-content">
+         <h3>{{item.label}}</h3>
+         <h4>{{item.datetime}}</h4>
+         <p>
+           {{item.itemId}}
+         </p>
+       </div>
+       <div class="md-tile-right" style="padding-right:15px; padding-left:10px;">
+         <md-button class="md-fab md-warn" aria-label="Eat cake" ng-click="remove(item.itemId)">
+            <i class="fa fa-remove"></i>
+         </md-button>
+       </div>
+     </md-item-content>
+     <md-divider md-inset ng-if="!$last"></md-divider>
+   </md-item>
+ </md-list>
+
+</md-content>

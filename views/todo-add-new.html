@@ -1,0 +1,13 @@
+<md-bottom-sheet class="md-grid">
+  <form>
+    <div>
+       <md-input-container flex>
+        <label>Add new To-Do!</label>
+        <input ng-model="todoItemLabelNew">
+       </md-input-container>
+    </div>
+    <div>
+       <md-button class="md-raised md-primary" type="submit" ng-click="saveItem(todoItemLabelNew)">Add</md-button>
+    </div>
+  </form>
+</md-bottom-sheet>

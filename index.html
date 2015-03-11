@@ -1,0 +1,50 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ES6-Angular Todo</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Angulars Material CSS now available via Google CDN; version 0.7 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.7.0/angular-material.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+    
+  </head>
+  <body ng-app="es6App">
+  
+    <div ng-view="" layout="column" flex></div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  
+  <script>
+    // Set some experimental options
+    var metadata = {
+      traceurOptions: {
+        properTailCalls: true,
+        symbols: true,
+        arrayComprehension: true,
+        asyncFunctions: true,
+        forOn: true,
+        generatorComprehension: true
+      }
+    };
+    System.import('./src/app.js', {metadata: metadata}).catch(function(ex) {
+      console.error('Import failed', ex.stack || ex);
+    });
+  </script>
+  </body>
+</html>
