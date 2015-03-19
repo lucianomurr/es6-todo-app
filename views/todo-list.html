@@ -34,6 +34,11 @@
      </md-item-content>
      <md-divider md-inset ng-if="!$last"></md-divider>
    </md-item>
+   <md-item ng-show="list<=0">
+      <md-item-content md-ink-ripple="#ff0">
+        <div class="md-tile-content">Complimenti, non ci sono task!<br></div>
+      </md-item-content>
+   </md-item>
  </md-list>
 
 </md-content>
