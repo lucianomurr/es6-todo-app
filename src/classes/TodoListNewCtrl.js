@@ -1,12 +1,13 @@
-class TodoListNewCtrl {
-  constructor($rootScope, $scope, $mdDialog, TodoService) {
+export class TodoListNewCtrl {
+  
+  constructor($rootScope, $scope, $mdDialog, TodoFactory) {
 
     $scope.saved = false;
     $scope.todoItemLabelNew = '';
 
-    $scope.saveItem = TodoService.addNew;
+    $scope.saveItem = TodoFactory.addNew;
 
-    $rootScope.$on('added_new_item', function() {
+    $rootScope.$on('added_new_item', function () {
       console.log('added_new_item intercepted');
       $mdDialog.hide();
     });
@@ -14,7 +15,4 @@ class TodoListNewCtrl {
   }
 
 }
-TodoListNewCtrl.$inject = ['$rootScope', '$scope', '$mdDialog', 'TodoService'];
-export {
-  TodoListNewCtrl
-};
+TodoListNewCtrl.$inject = ['$rootScope', '$scope', '$mdDialog', 'TodoFactory'];

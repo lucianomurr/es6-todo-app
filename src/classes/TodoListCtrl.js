@@ -1,8 +1,9 @@
-class TodoListCtrl {
-  constructor($scope, $mdDialog, TodoService) {
+export class TodoListCtrl {
+  constructor($rootScope, $scope, $mdDialog, TodoFactory) {
 
-    $scope.list = TodoService.get();
-    $scope.complete = TodoService.complete;
+    $scope.list = TodoFactory.todoItems;
+
+    $scope.complete = TodoFactory.complete;
 
     $scope.remove = function(ev) {
       // Appending dialog to document.body to cover sidenav in docs app
@@ -14,7 +15,7 @@ class TodoListCtrl {
         .cancel(' No ')
         .targetEvent(ev);
       $mdDialog.show(confirm).then(function() {
-        TodoService.remove(ev);
+        TodoFactory.remove(ev);
       }, function() {
         return false;
       });
@@ -29,12 +30,21 @@ class TodoListCtrl {
       });
     };
 
+     TodoFactory.get().then(function(value){
+       console.log('Value is ready: '+value);
+       $scope.list = value;
+       $scope.$apply();
+     });
+
+     $rootScope.$on('added_new_item', function () {
+       TodoFactory.get().then(function (value) {
+         console.log('Value is ready: ' + value);
+         $scope.list = value;
+       });
+     });
+
   }
 
 }
 
-TodoListCtrl.$inject = ['$scope', '$mdDialog', 'TodoService'];
-
-export {
-  TodoListCtrl
-};
+TodoListCtrl.$inject = ['$rootScope','$scope', '$mdDialog', 'TodoFactory'];

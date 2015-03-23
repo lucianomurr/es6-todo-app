@@ -4,7 +4,7 @@
           <span>To-Do App</span>
         </h1>
       <span flex></span>
-      <md-button class="md-fab md-primary" style="color:#fff;" ng-click="showAddNewTask()">
+      <md-button class="md-fab md-primary" style="color:#fff;" ng-click="showAddNewTask()" aria-label="add new task">
           <i class="fa fa-plus"></i>
       </md-button>
     </div>
@@ -12,22 +12,22 @@
 
 <md-content flex>
  <md-list>
-   <md-item ng-repeat="item in list | orderBy:'itemId':'reverse' track by $index">
+   <md-item ng-repeat="item in list | orderBy:'item[0]':'reverse'">
      <md-item-content md-ink-ripple="#ff0">
        <div class="md-tile-left" style="padding-right:10px; padding-left:10px;">
-         <md-button ng-disabled="item.completed" class="md-fab md-primary es6App-button" aria-label="complete item" ng-click="complete(item.itemId)">
+         <md-button ng-disabled="item[1].completed" class="md-fab md-primary es6App-button" aria-label="complete item" ng-click="complete(item[0])">
             <i class="fa fa-check"></i>
          </md-button>
        </div>
        <div class="md-tile-content">
-         <h3>{{item.label}}</h3>
-         <h4>{{item.datetime}}</h4>
+         <h3>{{item[1].label}}</h3>
+         <h4>{{item[1].datetime}}</h4>
          <p>
-           {{item.itemId}}
+           {{item[0]}}
          </p>
        </div>
        <div class="md-tile-right" style="padding-right:15px; padding-left:10px;">
-         <md-button class="md-fab md-warn" aria-label="Eat cake" ng-click="remove(item.itemId)">
+         <md-button class="md-fab md-warn" aria-label="Eat cake" ng-click="remove(item[0])">
             <i class="fa fa-remove"></i>
          </md-button>
        </div>
