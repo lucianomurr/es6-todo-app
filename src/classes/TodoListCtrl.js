@@ -1,11 +1,12 @@
 export class TodoListCtrl {
-  constructor($rootScope, $scope, $mdDialog, TodoFactory) {
+  constructor($rootScope, $scope, $mdDialog, TodoService) {
 
-    $scope.list = TodoFactory.todoItems;
+    var vm = this;
+    vm.list = TodoService.todoItems;
 
-    $scope.complete = TodoFactory.complete;
+    vm.complete = TodoService.complete;
 
-    $scope.remove = function(ev) {
+    vm.remove = function(ev) {
       // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
         .title('Attenzione!')
@@ -15,14 +16,14 @@ export class TodoListCtrl {
         .cancel(' No ')
         .targetEvent(ev);
       $mdDialog.show(confirm).then(function() {
-        TodoFactory.remove(ev);
+        TodoService.remove(ev);
       }, function() {
         return false;
       });
     };
 
-    $scope.showAddNewTask = function($event) {
-      $scope.alert = '';
+    vm.showAddNewTask = function($event) {
+      vm.alert = '';
       $mdDialog.show({
         templateUrl: 'views/todo-add-new.html',
         controller: 'TodoListNewCtrl',
@@ -30,16 +31,17 @@ export class TodoListCtrl {
       });
     };
 
-     TodoFactory.get().then(function(value){
-       console.log('Value is ready: '+value);
-       $scope.list = value;
-       $scope.$apply();
+     TodoService.get().then(function(value){
+
+      vm.list = TodoService.getTodo();
+      $scope.$apply();
      });
 
-     $rootScope.$on('added_new_item', function () {
-       TodoFactory.get().then(function (value) {
+     $rootScope.$on('itemlist.changed', function () {
+       TodoService.get().then(function (value) {
          console.log('Value is ready: ' + value);
-         $scope.list = value;
+         vm.list = TodoService.getTodo();
+         $scope.$apply();
        });
      });
 
@@ -47,4 +49,4 @@ export class TodoListCtrl {
 
 }
 
-TodoListCtrl.$inject = ['$rootScope','$scope', '$mdDialog', 'TodoFactory'];
+TodoListCtrl.$inject = ['$rootScope','$scope', '$mdDialog', 'TodoService'];

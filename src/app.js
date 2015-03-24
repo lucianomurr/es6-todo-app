@@ -1,5 +1,5 @@
 import {StorageService} from './classes/StorageService.js';
-import {TodoFactory} from './classes/TodoFactory.js';
+import {TodoService} from './classes/TodoService.js';
 import {TodoListCtrl} from './classes/TodoListCtrl.js';
 import {TodoListNewCtrl} from './classes/TodoListNewCtrl.js';
 
@@ -11,11 +11,7 @@ angular.module('es6App').config(['$routeProvider', '$mdThemingProvider',
     $routeProvider.
     when('/list', {
       templateUrl: 'views/todo-list.html',
-      controller: 'TodoListCtrl'
-    }).
-    when('/list/:itemId', {
-      templateUrl: 'views/todo-item-detail.html',
-      controller: 'TodoDetailCtrl'
+      controller: 'TodoListCtrl as listTodoController'
     }).
     otherwise({
       redirectTo: '/list'
@@ -39,7 +35,7 @@ angular.module('es6App').config(['$routeProvider', '$mdThemingProvider',
 
 angular.module('es6App')
   .service('StorageService', StorageService)
-  .factory('TodoFactory', ['$rootScope','StorageService',($rootScope, Storageservice) => new TodoFactory($rootScope, Storageservice)])
+  .service('TodoService', TodoService)
   .controller('TodoListCtrl', TodoListCtrl)
   .controller('TodoListNewCtrl', TodoListNewCtrl);
 

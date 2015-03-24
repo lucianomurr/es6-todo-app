@@ -4,7 +4,7 @@
           <span>To-Do App</span>
         </h1>
       <span flex></span>
-      <md-button class="md-fab md-primary" style="color:#fff;" ng-click="showAddNewTask()" aria-label="add new task">
+      <md-button class="md-fab md-primary" style="color:#fff;" ng-click="listTodoController.showAddNewTask()" aria-label="add new task">
           <i class="fa fa-plus"></i>
       </md-button>
     </div>
@@ -12,10 +12,10 @@
 
 <md-content flex>
  <md-list>
-   <md-item ng-repeat="item in list | orderBy:'item[0]':'reverse'">
+   <md-item ng-repeat="item in listTodoController.list">
      <md-item-content md-ink-ripple="#ff0">
        <div class="md-tile-left" style="padding-right:10px; padding-left:10px;">
-         <md-button ng-disabled="item[1].completed" class="md-fab md-primary es6App-button" aria-label="complete item" ng-click="complete(item[0])">
+         <md-button ng-disabled="item[1].completed" class="md-fab md-primary es6App-button" aria-label="complete item" ng-click="listTodoController.complete(item[0])">
             <i class="fa fa-check"></i>
          </md-button>
        </div>
@@ -27,7 +27,7 @@
          </p>
        </div>
        <div class="md-tile-right" style="padding-right:15px; padding-left:10px;">
-         <md-button class="md-fab md-warn" aria-label="Eat cake" ng-click="remove(item[0])">
+         <md-button class="md-fab md-warn" aria-label="Eat cake" ng-click="listTodoController.remove(item[0])">
             <i class="fa fa-remove"></i>
          </md-button>
        </div>

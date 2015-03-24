@@ -15,17 +15,13 @@ export class StorageService {
     return new Promise(function(success){
 
       let jsonData = localStorage.getItem(APP_STORAGE_KEY);
-
       _$log.debug('Service: get stored item!', jsonData);
-
       if (!JSON.parse(jsonData)){
         jsonData = new Map();
       }
-      
       success(jsonData);
 
     });
-
 
   }
 
